@@ -40,6 +40,10 @@ app.get('/animals', function (req, res) {
   })
 })
 
+app.post('/animals', function (req, res){
+  console.log(req.body);
+})
+
 // //SEED/TEST DATA
 // var luggage = Animal({
 //   name: 'The Luggage',
