@@ -41,7 +41,21 @@ app.get('/animals', function (req, res) {
 })
 
 app.post('/animals', function (req, res){
-  console.log(req.body);
+  var params = req.body;
+    console.log(params);
+    console.log(params.species);
+  var newAnimal = Animal({
+    name: params.name,
+    breed: params.breed,
+    dob: new Date(params.dob),
+    gender: params.gender,
+    species: params.dob,
+    status: 'Abandoned'
+  })
+  newAnimal.save(function(error) {
+    if (error) console.log(error)
+    console.log('animal created')
+  })
 })
 
 // //SEED/TEST DATA
