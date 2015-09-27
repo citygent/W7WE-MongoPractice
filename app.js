@@ -49,13 +49,14 @@ app.post('/animals', function (req, res){
     breed: params.breed,
     dob: new Date(params.dob),
     gender: params.gender,
-    species: params.dob,
+    species: params.species,
     status: 'Abandoned'
   })
   newAnimal.save(function(error) {
     if (error) console.log(error)
     console.log('animal created')
   })
+  res.json(newAnimal)
 })
 
 // //SEED/TEST DATA
