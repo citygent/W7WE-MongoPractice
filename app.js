@@ -59,6 +59,17 @@ app.post('/animals', function (req, res){
   res.json(newAnimal)
 })
 
+app.put('/animals/:id', function(req, res){
+  animalId = req.params.id;
+  Animal.find({ _id: animalId }, function(error, animal) {
+    if (error) console.log(error);
+    animal.status === "Abandoned" ? console.log("no") : Animal.find(animalId, {$set:{status:"Adopted"}}, function(error, result) {
+        res.send((result === 1) ? { msg:''} : {msg:'uh oh!: '+ error});
+    });
+  })
+  res.json(animal)
+});
+
 // //SEED/TEST DATA
 // var luggage = Animal({
 //   name: 'The Luggage',
@@ -74,7 +85,7 @@ app.post('/animals', function (req, res){
 // })
 // var binky = Animal({
 //   name: 'Binky',
-//   breed: 'Truely White',
+//   breed: 'TrueWhite',
 //   dob: new Date("1887-May-09"),
 //   gender: 'Male',
 //   species: 'Horse',
